@@ -9,4 +9,4 @@ Today I Learned
 
 ## TIL INDEX
 지금까지 공부한 내용 목록은 WIKI 참고
-(:link: )
+(:link: https://github.com/ansghltjd/TIL/wiki )
