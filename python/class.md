@@ -56,7 +56,7 @@ my_car = Car('blue')
 ```
 <hr>
 
-##1)은행 예제
+## 예제 1:은행 예제
 
 ```python
 class BankAccount:
@@ -107,7 +107,7 @@ lib.add_book(Book("Python Programming", "John Doe"))
 lib.show_books() ->"'Python Programming' by John Doe"
 ```
 
-##예제 3: 학생 관리 시스템
+## 예제 3: 학생 관리 시스템
 
 ```python
 class Student:
