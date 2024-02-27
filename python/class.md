@@ -1,13 +1,13 @@
-#클래스(Class)
+#클래스(Class)   
 
->Contents
+>Contents 
 >
 >* 클래스의 속성과 메서드
 >  * 클래스의 인스턴스 생성과 사용
 >  * 생성자 \__init__
 >  * 예제 1:은행 계좌 클래스
 >  * 예제 2: 도서관 관리 시스템
->* 예제 3: 은행 관리 시스템
+>* 예제 3: 학생 관리 시스템
 
 ##  클래스의 속성과 메서드
 
@@ -53,4 +53,94 @@ class Car:
 * 이렇게 정의된 클래스를 인스턴스화할 때는 다음과 같이 할 수 있습니다.
 ```python
 my_car = Car('blue')
+```
+<hr>
+
+##1)은행 예제
+
+```python
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"{amount}가 입금되었습니다.")
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            print(f"{amount}가 출금되었습니다.")
+        else:
+            print("잔액이 부족합니다.")
+
+account = BankAccount("Alice") 
+account.deposit(1000) -> "1000가 입금되었습니다"
+account.withdraw(500) -> "500가 출금되었습니다"
+```
+
+## 예제 2: 도서관 관리 시스템
+
+```python
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    def __str__(self):
+        return f"'{self.title}' by {self.author}"
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def show_books(self):
+        for book in self.books:
+            print(book)
+
+lib = Library()
+lib.add_book(Book("Python Programming", "John Doe"))
+lib.show_books() ->"'Python Programming' by John Doe"
+```
+
+##예제 3: 학생 관리 시스템
+
+```python
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade  # 0 - 100
+
+    def get_grade(self):
+        return self.grade
+
+class Course:
+    def __init__(self, name, max_students):
+        self.name = name
+        self.max_students = max_students
+        self.students = []
+
+    def add_student(self, student):
+        if len(self.students) < self.max_students:
+            self.students.append(student)
+            return True
+        return False
+
+    def get_average_grade(self):
+        value = sum([student.get_grade() for student in self.students])
+        return value / len(self.students)
+
+math = Course("Math", 2)
+s1 = Student("Tim", 19, 95)
+s2 = Student("Bill", 19, 75)
+
+math.add_student(s1)
+math.add_student(s2)
+
+print(math.get_average_grade()) -> "85.0"
 ```
