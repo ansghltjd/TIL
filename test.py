@@ -30,4 +30,4 @@ s2 = Student("Bill", 19, 75)
 math.add_student(s1)
 math.add_student(s2)
 
-print(math.get_average_grade())
+print(math.get_average_grade()) 
