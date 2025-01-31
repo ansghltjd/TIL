@@ -6,7 +6,9 @@ permissions:
 
 on:
   push:
-    types: [opened, synchronize]
+    branches:
+      - main
+    # types: [opened, synchronize]
 
 jobs:
   code-review:
