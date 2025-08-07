@@ -1,33 +1,32 @@
 from collections import defaultdict
 import math
 def solution(fees, records):
-    basic_time, basic_fee, unit_time, unit_fee = fees
     parking = dict()
     total_time = defaultdict(int)
+    basic_time, basic_fee, unit_time, unit_fee = fees
     
-    def time_to_minutes(time_str):
-        h, m = map(int, time_str.split(':'))
-        return h * 60 + m
+    def hour_to_minute(str_time):
+        hour, minute = map(int,str_time.split(':'))
+        return hour * 60 + minute
     
     for record in records:
-        time_str, car_num, status = record.split()
-        time = time_to_minutes(time_str)
-        
-        if status == 'IN':
-            parking[car_num] = time
-        elif status == 'OUT':
+        str_time, car_num, state = record.split()
+        time = hour_to_minute(str_time)
+        if state == 'IN':
+            parking[car_num] = time 
+        elif state == 'OUT':
             in_time = parking.pop(car_num)
             total_time[car_num] += time - in_time
             
-    for car_num, in_time in parking.items():
-        total_time[car_num] += time_to_minutes('23:59') - in_time
-        
     answer = []
+    
+    for car_num, in_time in parking.items():
+        total_time[car_num] += hour_to_minute('23:59') - in_time
+    
     for car_num in sorted(total_time.keys()):
         time = total_time[car_num]
         if time <= basic_time:
-            fee = basic_fee
+            answer.append(basic_fee)
         else:
-            fee = basic_fee + math.ceil((time - basic_time) / unit_time) * unit_fee
-        answer.append(fee)
+            answer.append(basic_fee + math.ceil((time-basic_time) / unit_time ) * unit_fee)
     return answer
