@@ -15,4 +15,4 @@ def solution(numbers):
                 return False
         return True
     
-    return sum(1 for n in nums if is_prime(n))
+    return sum(1 for i in nums if is_prime(i))
